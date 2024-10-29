@@ -11,22 +11,3 @@ Deployment Links:
 Back-End Server: https://legoui.onrender.com/
 
 FrontEnd Server: https://legoui.pages.dev/
-
-
-
-Road Map: 
-
-1. Create a README file and edit the readme
-
-2. Initialing Back-End  Server (NodeJS)
-
-3. Setting up the database. 
-
-4. Connect the database to the backend using Mongoose.
-
-5. Starting with writing the HTTP methods (GET, POST, PUT, DELETE).
-
-6. Setting up all the routes for my API.
-
-7. Deployment of Beck-End Server.
-
