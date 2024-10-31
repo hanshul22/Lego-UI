@@ -36,20 +36,26 @@ function ForgotPasswordForm() {
             <div className={styles.rightBoxcontent}>
               <h1 className={styles.loginHeading}>Forgot Password</h1>
             </div>
-            <div className={styles.loginPageInputs}>
-              <input
-                required
-                value={email}
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-                className={styles.loginPassword}
-                placeholder="Email"
-              />
-            </div>
+            <div className={styles.wavegroup}>
+                    <input
+                      required
+                      onChange={(e) => setEmail(e.target.value)}
+                      type="text"
+                      name=""
+                      className={styles.input}
+                    />
+                    <span className={styles.bar} />
+                    <label className={styles.label}>
+                    <span className={styles.labelchar} style={{ '--index': 0 }} >E</span>
+                      <span className={styles.labelchar} style={{ '--index': 1 }} >m</span>
+                      <span className={styles.labelchar} style={{ '--index': 2 }} >a</span>
+                      <span className={styles.labelchar} style={{ '--index': 3 }} >i</span>
+                      <span className={styles.labelchar} style={{ '--index': 4 }} >l</span>
+                    </label>
+                  </div>
             <div className={styles.loginBtnBox}>
-              <button type="submit" className={styles.loginBtn}>
-                Send Reset Link
-              </button>
+            <input className={styles.loginbutton} type="submit" value="Send Reset Link" readOnly ></input>
+
             </div>
           </div>
         </div>

@@ -84,42 +84,84 @@ function SignUp() {
                 <p>Get started in seconds – sign up now!</p>
               </div>
               <div className={styles.loginPageInputs}>
-                <input
-                  required
-                  onChange={handleChange}
-                  type="text"
-                  name="username"
-                  value={username}
-                  className={styles.loginInput}
-                  placeholder="User Name"
-                />
-                <input
-                  required
-                  onChange={handleChange}
-                  type="email"
-                  name="email"
-                  value={email}
-                  className={styles.loginInput}
-                  placeholder="Email"
-                />
-                <input
-                  required
-                  onChange={handleChange}
-                  type="password"
-                  name="password"
-                  value={password}
-                  className={styles.loginPassword}
-                  placeholder="Password"
-                />
-                <input
-                  required
-                  onChange={handleChange}
-                  type="password"
-                  name="confirmPassword"
-                  value={confirmPassword}
-                  className={styles.loginPassword}
-                  placeholder="Confirm Password"
-                />
+
+                <div className={styles.wavegroup}>
+                  <input
+                    required
+                    type="text"
+                    name="username"
+                    className={styles.input}
+                  />
+                  <span className={styles.bar} />
+                  <label className={styles.label}>
+                    <span className={styles.labelchar} style={{ '--index': 0 }} >N</span>
+                    <span className={styles.labelchar} style={{ '--index': 1 }} >a</span>
+                    <span className={styles.labelchar} style={{ '--index': 2 }} >m</span>
+                    <span className={styles.labelchar} style={{ '--index': 3 }} >e</span>
+                  </label>
+                </div>
+                <div className={styles.wavegroup}>
+                  <input
+                    required
+                    type="text"
+                    name="email"
+                    className={styles.input}
+                  />
+                  <span className={styles.bar} />
+                  <label className={styles.label}>
+                    <span className={styles.labelchar} style={{ '--index': 0 }} >E</span>
+                    <span className={styles.labelchar} style={{ '--index': 1 }} >m</span>
+                    <span className={styles.labelchar} style={{ '--index': 2 }} >a</span>
+                    <span className={styles.labelchar} style={{ '--index': 3 }} >i</span>
+                    <span className={styles.labelchar} style={{ '--index': 4 }} >l</span>
+                  </label>
+                </div>
+                <div className={styles.wavegroup}>
+                  <input
+                    required
+                    type="password"
+                    name="password"
+                    className={styles.input}
+                  />
+                  <span className={styles.bar} />
+                  <label className={styles.label}>
+                    <span className={styles.labelchar} style={{ '--index': 0 }} >P</span>
+                    <span className={styles.labelchar} style={{ '--index': 0 }} >a</span>
+                    <span className={styles.labelchar} style={{ '--index': 1 }} >s</span>
+                    <span className={styles.labelchar} style={{ '--index': 1 }} >s</span>
+                    <span className={styles.labelchar} style={{ '--index': 2 }} >w</span>
+                    <span className={styles.labelchar} style={{ '--index': 2 }} >o</span>
+                    <span className={styles.labelchar} style={{ '--index': 3 }} >r</span>
+                    <span className={styles.labelchar} style={{ '--index': 4 }} >d</span>
+                  </label>
+                </div>
+                <div className={styles.wavegroup}>
+                  <input
+                    required
+                    type="password"
+                    name="confirmPassword"
+                    className={styles.input}
+                  />
+                  <span className={styles.bar} />
+                  <label className={styles.label}>
+                    <span className={styles.labelchar} style={{ '--index': -3 }} >C</span>
+                    <span className={styles.labelchar} style={{ '--index': -3 }} >o</span>
+                    <span className={styles.labelchar} style={{ '--index': -2 }} >n</span>
+                    <span className={styles.labelchar} style={{ '--index': -2 }} >f</span>
+                    <span className={styles.labelchar} style={{ '--index': -2 }} >e</span>
+                    <span className={styles.labelchar} style={{ '--index': -1 }} >r</span>
+                    <span className={styles.labelchar} style={{ '--index': -1 }} >m</span>
+                    <span className={styles.labelchar} style={{ '--index': -1 }} ></span>
+                    <span className={styles.labelchar} style={{ '--index': 0 }} >P</span>
+                    <span className={styles.labelchar} style={{ '--index': 0 }} >a</span>
+                    <span className={styles.labelchar} style={{ '--index': 1 }} >s</span>
+                    <span className={styles.labelchar} style={{ '--index': 1 }} >s</span>
+                    <span className={styles.labelchar} style={{ '--index': 2 }} >w</span>
+                    <span className={styles.labelchar} style={{ '--index': 2 }} >o</span>
+                    <span className={styles.labelchar} style={{ '--index': 3 }} >r</span>
+                    <span className={styles.labelchar} style={{ '--index': 4 }} >d</span>
+                  </label>
+                </div>
               </div>
               <div className={styles.chackboxdiv}>
                 <div className={styles.checkboxmaindiv}>
@@ -135,14 +177,15 @@ function SignUp() {
               </div>
 
               <div className={styles.loginBtnBox}>
-                <button type="submit" className={styles.loginBtn}>
-                  Sign Up
-                </button>
-                <h2>OR</h2>
-                <button onClick={loginWithGoogle} className={styles.googleBtn}>
-                  <FcGoogle className={styles.googleIcon} /> Sign In With Google
-                </button>
-              </div>
+                  <input className={styles.loginbutton} type="submit" value="Sign Up" readOnly ></input>
+                  <h2>OR</h2>
+                  <div className={styles.googlelogin}>
+                    <button className={styles.loginbutton}>
+                    <FcGoogle className={styles.googleIcon}/>
+                      Continue with Google
+                    </button>
+                  </div>
+                </div>
               <p className={styles.register}>
                 Already have an account?  <Link to={"/login"} className={styles.loginpagelink}>
                   {" "}

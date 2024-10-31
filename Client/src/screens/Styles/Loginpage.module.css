@@ -91,24 +91,6 @@
 
 }
 
-.loginPageInputs input{
-    width: 100%;
-    height: 45px;
-    outline: none;
-    background-color: transparent;
-    border: none;
-    border-bottom: 2px solid #3A5060;
-    font-size: 18px;
-    cursor: pointer;
-    
-}
-
-.loginPageInputs input::placeholder{
-    color: #3A5060;
-    font-size: 18px;
-
-}
-
 .chackboxdiv{
     display: flex;
     justify-content: space-between;
@@ -130,6 +112,7 @@
 .loginpagelink {
     color: rgb(217, 249, 253);
     text-decoration: none;
+    transition: 0.3s;
 }
 .loginpagelink:hover {
     color: rgb(35, 206, 228);
@@ -144,24 +127,51 @@
 
 }
 
-.loginBtnBox button{
-    font-size: 18px;
+.loginBtnBox .loginbutton{
+    display: block;
     width: 100%;
-    height: 45px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    column-gap: 10px;
-    border: none;
+    font-weight: 700;
+    font-size: 16px;
+    background: linear-gradient(45deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
+    color: black;
+    padding-block: 15px;
+    margin: 0px auto;
     border-radius: 10px;
-    font-weight: 550;
-    cursor: pointer;
+    box-shadow: #3a5480 0px 20px 10px -15px;
+    border: none;
+    transition: all 0.2s ease-in-out;
+}
 
+.loginBtnBox .loginbutton:hover {
+    transform: scale(1.03);
+    box-shadow: #3a5480 0px 23px 10px -20px;
+}
+
+.loginBtnBox .loginbutton:active{
+    transform: scale(0.95);
+  box-shadow: #7d94bc 0px 15px 10px -10px;
+}
+
+.googlelogin{
+    display: flex;
+    position: relative;
 }
 
 .googleIcon{
     font-size: 25px;
+    position: absolute;
+    left: 100px;
+    top: 11px;
 }
+
+.loginBtnBox .loginbutton:active .googleIcon{
+    transform: scale(0.95);
+    
+}
+.loginBtnBox .loginbutton:hover .googleIcon{
+    transform: scale(1.03);
+}
+
 
 .register{
     color: beige;
@@ -169,3 +179,81 @@
     column-gap: 8px;
 
 }
+
+
+/* login signup inputs fileds  */
+
+.wavegroup {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .wavegroup .input {
+    font-size: 16px;
+    color: aliceblue;
+    padding: 8px 8px 8px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1.4px solid #201e1e;
+    background: transparent;
+  }
+
+  .wavegroup .input:focus {
+    outline: none;
+  }
+
+  .wavegroup .label {
+    color:  rgb(217, 249, 253);
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    display: flex;
+  }
+
+  .wavegroup .labelchar {
+    transition: 0.2s ease all;
+    transition-delay: calc(var(--index) * .05s);
+  }
+
+  .wavegroup .input:focus ~ label .labelchar,
+  .wavegroup .input:valid ~ label .labelchar {
+    transform: translateY(-20px);
+    font-size: 14px;
+    color: #ffffff;
+  }
+
+  .wavegroup .bar {
+    position: relative;
+    display: block;
+    width: 100%;
+  }
+
+  .wavegroup .bar:before,.wavegroup .bar:after {
+    content: '';
+    height: 2px;
+    /* /: 50%; */
+    width: 0;
+    bottom: 0px;
+    position: absolute;
+    background: #ffffff;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+  }
+
+  .wavegroup .bar:before {
+    left: 50%;
+  }
+
+  .wavegroup .bar:after {
+    right: 50%;
+  }
+
+  .wavegroup .input:focus ~ .bar:before,
+  .wavegroup .input:focus ~ .bar:after {
+    width: 50%;
+  };

@@ -73,22 +73,58 @@ const ResetPassword = () => {
                 <h1 className={styles.loginHeading}>Reset Your Password</h1>
               </div>
               <div className={styles.loginPageInputs}>
-                <input
-                  required
-                  value={newPassword}
-                  type="password"
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  className={styles.loginPassword}
-                  placeholder="New Password"
-                />
-                <input
-                  required
-                  value={confirmPassword}
-                  type="password"
-                  onChange={e => setConfirmPassword(e.target.value)}
-                  className={styles.loginPassword}
-                  placeholder="Confirm Password"
-                />
+              <div className={styles.wavegroup}>
+                    <input
+                      required
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      type="password"
+                      name=""
+                      className={styles.input}
+                    />
+                    <span className={styles.bar} />
+                    <label className={styles.label}>
+                      <span className={styles.labelchar} style={{ '--index': -1 }} >N</span>
+                      <span className={styles.labelchar} style={{ '--index': -1 }} >e</span>
+                      <span className={styles.labelchar} style={{ '--index': -1 }} >w</span>
+                      <span className={styles.labelchar} style={{ '--index': -1 }} ></span>
+                      <span className={styles.labelchar} style={{ '--index': 0 }} >P</span>
+                      <span className={styles.labelchar} style={{ '--index': 0 }} >a</span>
+                      <span className={styles.labelchar} style={{ '--index': 1 }} >s</span>
+                      <span className={styles.labelchar} style={{ '--index': 1 }} >s</span>
+                      <span className={styles.labelchar} style={{ '--index': 2 }} >w</span>
+                      <span className={styles.labelchar} style={{ '--index': 2 }} >o</span>
+                      <span className={styles.labelchar} style={{ '--index': 3 }} >r</span>
+                      <span className={styles.labelchar} style={{ '--index': 4 }} >d</span>
+                    </label>
+                  </div>
+                  <div className={styles.wavegroup}>
+                    <input
+                      required
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      type="password"
+                      name=""
+                      className={styles.input}
+                    />
+                    <span className={styles.bar} />
+                    <label className={styles.label}>
+                      <span className={styles.labelchar} style={{ '--index': -3 }} >C</span>
+                      <span className={styles.labelchar} style={{ '--index': -3 }} >o</span>
+                      <span className={styles.labelchar} style={{ '--index': -2 }} >n</span>
+                      <span className={styles.labelchar} style={{ '--index': -2 }} >f</span>
+                      <span className={styles.labelchar} style={{ '--index': -2 }} >e</span>
+                      <span className={styles.labelchar} style={{ '--index': -1 }} >r</span>
+                      <span className={styles.labelchar} style={{ '--index': -1 }} >m</span>
+                      <span className={styles.labelchar} style={{ '--index': -1 }} ></span>
+                      <span className={styles.labelchar} style={{ '--index': 0 }} >P</span>
+                      <span className={styles.labelchar} style={{ '--index': 0 }} >a</span>
+                      <span className={styles.labelchar} style={{ '--index': 1 }} >s</span>
+                      <span className={styles.labelchar} style={{ '--index': 1 }} >s</span>
+                      <span className={styles.labelchar} style={{ '--index': 2 }} >w</span>
+                      <span className={styles.labelchar} style={{ '--index': 2 }} >o</span>
+                      <span className={styles.labelchar} style={{ '--index': 3 }} >r</span>
+                      <span className={styles.labelchar} style={{ '--index': 4 }} >d</span>
+                    </label>
+                  </div>
               </div>
               <div className={styles.loginBtnBox}>
                 <button type="submit" className={styles.loginBtn} disabled={loading}>
