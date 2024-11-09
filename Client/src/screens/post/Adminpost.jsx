@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import styles from '../Styles/adminpost.module.css';
+import { useContext } from 'react';
+import { UserContext } from "../../Services/UserContext";
 
 function Adminpost() {
   const [title, setTitle] = useState('');
@@ -15,6 +17,10 @@ function Adminpost() {
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState('');
   const [fileName, setFileName] = useState('No file chosen');
+  const [previewLink, setpreviewLink] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+
+  const { user } = useContext(UserContext);
 
   const handleFileChange = (event) => {
     const input = event.target;
@@ -25,6 +31,14 @@ function Adminpost() {
       setFileName('No file chosen');
     }
   };
+
+  useEffect(() => {
+    if (user.provider === 'JWT') {
+      setUserEmail(user.email);
+    } else if (user.provider !== 'JWT') {
+      setUserEmail(user.user.email);
+    }
+  }, [user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,34 +52,38 @@ function Adminpost() {
     formData.append('html', html);
     formData.append('css', css);
     formData.append('js', js);
-
+    formData.append('previewLink', previewLink);
+    formData.append('useremail', userEmail);
+    
     try {
-      setSubmitting(true);
-      await axios.post('http://localhost:500/api/admin/upload', formData, {
+      await axios.post('https://s47-hanshul-capstone-legoui.onrender.com/api/admin/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
       setMessage('Your code is uploaded');
     } catch (error) {
-      console.log(formData)
       console.error('Error uploading data', error);
       setMessage('Failed to upload data');
     } finally {
       setSubmitting(false);
+      console.log(formData);
       setTimeout(() => {
         setMessage('');
       }, 3000);
     }
   };
 
+  
+  
+
   return (
     <motion.div
-    className={styles.cointaner}
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 1 }}
-  >
+      className={styles.container}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
       <div className={styles.formdiv}>
         <h1 className={styles.header}>Upload Form</h1>
         <form className={styles.form} onSubmit={handleSubmit}>
@@ -102,10 +120,30 @@ function Adminpost() {
                 />
               </div>
               <div className={styles.leftelemetsdiv}>
+                <label className={styles.sourcecodepath}>Preview :</label>
+                <input
+                  type="text"
+                  value={previewLink}
+                  onChange={(e) => setpreviewLink(e.target.value)}
+                  placeholder="Preview Link"
+                  required
+                />
+              </div>
+              <div className={styles.leftelemetsdiv}>
+                <input type="hidden" value={userEmail} name="useremail" />
+              </div>
+              <div className={styles.leftelemetsdiv}>
                 <label className={styles.file}>Image Upload :</label>
                 <div className={styles.fileInputWrapper}>
-                  <input type="file" className={styles.fileInput} id="file" onChange={handleFileChange} />
-                  <label htmlFor="file" className={styles.customFileLabel}>Choose a file</label>
+                  <input
+                    type="file"
+                    className={styles.fileInput}
+                    id="file"
+                    onChange={handleFileChange}
+                  />
+                  <label htmlFor="file" className={styles.customFileLabel}>
+                    Choose a file
+                  </label>
                   <span className={styles.fileName}>{fileName}</span>
                 </div>
               </div>
@@ -150,16 +188,23 @@ function Adminpost() {
             </div>
           </div>
           <div className={styles.formbtn}>
-            <button type="submit">{submitting ? 'Submitting...' : 'Submit'}</button>
+            <button type="submit">
+              {submitting ? 'Submitting...' : 'Submit'}
+            </button>
           </div>
         </form>
         {message && (
-          <div className={`${styles.popup} ${message === 'Your code is uploaded' ? styles.success : styles.error}`}>
+          <div
+            className={`${styles.popup} ${
+              message === 'Your code is uploaded'
+                ? styles.success
+                : styles.error
+            }`}
+          >
             {message}
           </div>
         )}
       </div>
-    <div/>
     </motion.div>
   );
 }

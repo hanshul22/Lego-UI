@@ -85,6 +85,15 @@ class UserControllers {
     }
   };
 
+  static getAllUsers = async (req, res) => {
+    try {
+      const users = await UserModel.find(); // for fetching all the users form user model
+      return res.send({status: "success", data: users });
+    } catch (error) {
+      res.send.status(500).send({status: "Failed", msg: "Unable to get all users"})
+    }
+  };
+
   static changeUserPassword = async (req, res) => {
     const { old_password, new_password, confirmation_new_password } = req.body;
   

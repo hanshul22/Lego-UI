@@ -7,6 +7,7 @@ const checkBlacklist = require('../middlewares/checkBlacklist');
 // Route level Middleware - to protect Route
 router.use('/changepassword', checkUserAuth);
 router.use('/loggedUser', checkUserAuth);
+router.use('/getAllUsers', checkUserAuth)
 router.use('/jwt/logout', checkUserAuth, checkBlacklist); // Applied checkUserAuth first, then checkBlacklist
 
 // Public Routes
@@ -18,6 +19,8 @@ router.post('/reset-password/:id/:token', UserControllers.sendUserPasswordReset)
 // Protected Routes
 router.post('/changepassword', UserControllers.changeUserPassword);
 router.get('/loggedUser', UserControllers.loggedUser);
+router.get('/getAllUsers', UserControllers.getAllUsers) 
 router.post('/jwt/logout', UserControllers.userLogout);
+
 
 module.exports = router;

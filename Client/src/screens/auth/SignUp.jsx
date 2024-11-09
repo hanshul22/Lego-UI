@@ -180,7 +180,7 @@ function SignUp() {
                   <input className={styles.loginbutton} type="submit" value="Sign Up" readOnly ></input>
                   <h2>OR</h2>
                   <div className={styles.googlelogin}>
-                    <button className={styles.loginbutton}>
+                    <button className={styles.loginbutton} onClick={loginWithGoogle}>
                     <FcGoogle className={styles.googleIcon}/>
                       Continue with Google
                     </button>

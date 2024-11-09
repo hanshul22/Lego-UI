@@ -5,6 +5,7 @@ const uploadUserCode = async (req, res) => {
   try {
     const { title, description, sourceCodePath, githublink, html, css, js, useremail } = req.body;
     const imagePath = req.file.path;
+    const userID = req.usrId
 
     const newCode = new UserCode({
       title,

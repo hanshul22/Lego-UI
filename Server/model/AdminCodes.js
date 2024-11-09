@@ -5,7 +5,7 @@ const codeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  description:{
+  description: {
     type: String,
     required: true,
   },
@@ -37,6 +37,13 @@ const codeSchema = new mongoose.Schema({
     type: String,
     required: true,
   }, 
+  previewLink: {
+    type: String,
+    required:  true,
+  },
+  videoPath: {
+    type: String,
+  }
 });
 
 const AdminCode = mongoose.model('admincodes', codeSchema);
