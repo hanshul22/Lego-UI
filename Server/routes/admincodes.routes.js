@@ -56,7 +56,7 @@ router.post(
     uploadAdminCode
 );
 
-router.get("/codes", checkAdminAuth, getAdminCodes);
+router.get("/codes", getAdminCodes);
 
 router.post(
     "/edit/:id", 
