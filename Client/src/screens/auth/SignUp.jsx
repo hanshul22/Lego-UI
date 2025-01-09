@@ -90,6 +90,8 @@ function SignUp() {
                     required
                     type="text"
                     name="username"
+                    value={username}
+                    onChange={handleChange}
                     className={styles.input}
                   />
                   <span className={styles.bar} />
@@ -105,6 +107,8 @@ function SignUp() {
                     required
                     type="text"
                     name="email"
+                    value={email}
+                    onChange={handleChange}
                     className={styles.input}
                   />
                   <span className={styles.bar} />
@@ -121,6 +125,8 @@ function SignUp() {
                     required
                     type="password"
                     name="password"
+                    value={password}
+                    onChange={handleChange}
                     className={styles.input}
                   />
                   <span className={styles.bar} />
@@ -140,6 +146,8 @@ function SignUp() {
                     required
                     type="password"
                     name="confirmPassword"
+                    value={confirmPassword}
+                    onChange={handleChange}
                     className={styles.input}
                   />
                   <span className={styles.bar} />

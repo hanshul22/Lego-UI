@@ -34,12 +34,12 @@
   margin: 0;
 }
 
-body {
+/* body {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
   font-weight: 500;
   color: var(--text-color);
-}
+} */
 
 ul {
   list-style: none;
@@ -49,7 +49,7 @@ a {
   text-decoration: none;
 }
 
-img {
+.ghostimg {
   max-width: 100%;
   height: auto;
 }
@@ -74,22 +74,22 @@ img {
   display: grid;
 }
 
-.home__container {
+.homeContainer {
   display: grid;
   align-content: center;
   row-gap: 2.5rem;
 }
 
-.home__data {
+.homeData {
   text-align: center;
 }
 
-.home__title {
+.homeTitle {
   font-size: var(--biggest-font-size);
   margin: .75rem 0;
 }
 
-.home__button {
+.homeButton {
   margin-top: 2rem;
   display: inline-block;
   background-color: var(--text-color);
@@ -99,20 +99,26 @@ img {
   transition: .4s;
 }
 
-.home__button:hover {
+.homeButton:hover {
   box-shadow: 0 4px 12px hsla(38, 69%, 8%, .2);
 }
 
-.home__img img {
+.homeImg img {
   width: 230px;
   animation: floaty 1.8s infinite alternate;
 }
 
-.home__img {
+.homeImg {
   justify-self: center;
 }
 
-.home__shadow {
+.homeSubtitle{
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.homeShadow {
   width: 130px;
   height: 24px;
   background-color: hsla(38, 21%, 19%, .16);
@@ -122,13 +128,6 @@ img {
   animation: shadow 1.8s infinite alternate;
 }
 
-.home__footer {
-  display: flex;
-  justify-content: center;
-  column-gap: .5rem;
-  font-size: var(--smaller-font-size);
-  align-self: flex-end;
-}
 
 /* Animate ghost */
 @keyframes floaty {
@@ -148,19 +147,30 @@ img {
     transform: scale(.85, .85);
   }
 }
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 320px) {
+  .home {
+    padding-top: 7rem;
+  }
+}
+
+
+/* For large devices */
 @media screen and (min-width: 1024px) {
-  .home__container {
+  .homeContainer {
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
     column-gap: 2rem;
   }
-  .home__data {
+  .homeData {
     text-align: initial;
   }
-  .home__img img {
+  .homeImg img {
     width: 400px;
   }
-  .home__shadow {
+  .homeShadow {
     width: 250px;
     height: 40px;
   }
@@ -173,3 +183,21 @@ img {
   }
 }
 
+/* For 2K resolutions (2048 x 1152, 2048 x 1536) */
+@media screen and (min-width: 2048px) {
+  body {
+    zoom: 1.7;
+  }
+
+  .home {
+    height: initial;
+    row-gap: 4rem;
+  }
+}
+
+/* For 4K resolutions (3840 x 2160, 4096 x 2160) */
+@media screen and (min-width: 3840px) {
+  body {
+    zoom: 3.1;
+  }
+}

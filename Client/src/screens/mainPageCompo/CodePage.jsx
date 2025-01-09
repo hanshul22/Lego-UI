@@ -11,6 +11,7 @@ const DisplayPage = () => {
   const location = useLocation();
   const code = location.state;
 
+
   const [copiedSection, setCopiedSection] = useState(null);
 
   const handleCopy = (text, section) => {
@@ -87,20 +88,28 @@ const DisplayPage = () => {
     },
   };
 
+  console.log(code);
+
+
   return (
     <div className={styles.maindiv}>
       <div className={styles.container}>
-        <h1 className={styles.heading}>CSS Login Pages</h1>
+        <h1 className={styles.heading}>{code.title}</h1>
         <div className={styles.main}>
           <div className={styles.leftSide}>
             <img src={code.imagePath} alt={code.title} className={styles.image} />
           </div>
           <div className={styles.rightSide}>
             <p className={styles.description}>{code.description}</p>
-            <a href={code.githublink} target="_blank" rel="noopener noreferrer">
-              <button><FaGithub /> Github Link</button>
-            </a>
           </div>
+        </div>
+        <div className={styles.btns}>
+          <a href={code.githublink} target="_blank" rel="noopener noreferrer">
+            <button className={styles.githubbtn}><FaGithub /> Github Link</button>
+          </a>
+          <a href={code.previewLink} target="_blank" rel="noopener noreferrer">
+            <button className={styles.githubbtn}> Preview</button>
+          </a>
         </div>
         <div className={styles.codeSection}>
           <div className={styles.codeHeader}>

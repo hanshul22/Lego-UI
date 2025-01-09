@@ -1,0 +1,15 @@
+meta {
+  name: logged in user
+  type: http
+  seq: 13
+}
+
+get {
+  url: http://localhost:500/api/admins/loggedAdmin
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NzRjOGZhOWJhOTdjYWY4MmQ2NmU1OWYiLCJpYXQiOjE3MzMzODE3NjYsImV4cCI6MTczMzgxMzc2Nn0.jY-4dHVwL_WAKpTZyFdJVTVOMP8weylSP4B0m8rvkxw
+}
