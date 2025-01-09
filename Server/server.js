@@ -21,7 +21,7 @@ const sessionKey = process.env.SESSIONKEY;
 ConnectToDB();
 
 app.use(cors({
-    origin: ["http://localhost:3000", "https://lego-ui-bxke.vercel.app/"],
+    origin: ["http://localhost:3000", "http://localhost:3001" ,"https://lego-ui-bxke.vercel.app/"],
     methods: "GET, POST, PUT, DELETE",
     credentials: true
 }));

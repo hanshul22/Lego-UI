@@ -3,26 +3,30 @@ const UserCode = require('../model/UserCodes');
 // Upload new user code
 const uploadUserCode = async (req, res) => {
   try {
-    const { title, description, sourceCodePath, githublink, html, css, js, useremail } = req.body;
-    const imagePath = req.file.path;
-    const userID = req.usrId
+      const { title, description, githubUrl, deployedUrl,sourcePath, html, css, js } = req.body;
 
-    const newCode = new UserCode({
-      title,
-      description,
-      imagePath,
-      sourceCodePath,
-      githublink,
-      html,
-      css,
-      js,
-      useremail,
-    });
-    await newCode.save();
-    res.status(201).send('Data uploaded successfully');
+      const image = req.files?.image?.[0]?.path || null;
+      const video = req.files?.video?.[0]?.path || null;
+
+      const newCode = new UserCode({
+          title,
+          description,
+          image,
+          video,
+          githubUrl,
+          deployedUrl,
+          author: req.user.name,
+          author_ID: req.user._id,
+          sourcePath,
+          code: { html, css, js },
+          codeType: "UserCodes"
+      });
+
+      await newCode.save();
+      res.status(201).send("Data uploaded successfully");
   } catch (error) {
-    console.error('Error uploading data', error);
-    res.status(500).send('Failed to upload data');
+      console.error("Error uploading data:", error);
+      res.status(500).send("Failed to upload data");
   }
 };
 
@@ -41,35 +45,52 @@ const getUserCodes = async (req, res) => {
 const editUserCode = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, sourceCodePath, githublink, html, css, js, useremail } = req.body;
-    const imagePath = req.file ? req.file.path : undefined; // Check if file upload is provided
+    const { title, description, githubUrl, deployedUrl, sourcePath, html, css, js } = req.body;
 
+    const existingCode = await UserCode.findById(id);
+    if (!existingCode) {
+      return res.status(404).json({ message: "Code not found" });
+    }
+
+    // Prepare updated data
     const updateData = {
       title,
       description,
-      sourceCodePath,
-      githublink,
-      html,
-      css,
-      js,
-      useremail,
+      githubUrl,
+      deployedUrl,
+      sourcePath,
+      code: { html, css, js },
     };
 
-    // Only update imagePath if a new image is provided
-    if (imagePath) {
-      updateData.imagePath = imagePath;
+    // Handle new image upload
+    if (req.files?.image?.[0]?.path) {
+      if (existingCode.image) {
+        console.log("Deleting old image:", existingCode.image);
+        // Delete old image logic (Cloudinary/Local)
+      }
+      updateData.image = req.files.image[0].path;
     }
 
-    const updatedCode = await UserCode.findByIdAndUpdate(id, updateData, { new: true });
+    // Handle new video upload
+    if (req.files?.video?.[0]?.path) {
+      if (existingCode.video) {
+        console.log("Deleting old video:", existingCode.video);
+        // Delete old video logic (Cloudinary/Local)
+      }
+      updateData.video = req.files.video[0].path;
+    }
 
+    // Update the document
+    const updatedCode = await AdminCode.findByIdAndUpdate(id, updateData, { new: true });
     if (!updatedCode) {
-      return res.status(404).send('Code not found');
+      return res.status(404).json({ message: "Code not found" });
     }
 
     res.status(200).json(updatedCode);
   } catch (error) {
-    console.error('Error updating data', error);
-    res.status(500).send('Failed to update data');
+    // Better logging for debugging
+    console.error("Error updating data:", JSON.stringify(error, null, 2));
+    res.status(500).json({ message: "Failed to update data", error: error.message });
   }
 };
 
