@@ -87,7 +87,7 @@ class UserControllers {
 
   static getAllUsers = async (req, res) => {
     try {
-      const users = await UserModel.find(); // for fetching all the users form user model
+      const users = await UserModel.find();
       return res.send({status: "success", data: users });
     } catch (error) {
       res.send.status(500).send({status: "Failed", msg: "Unable to get all users"})

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const codeSchema = new mongoose.Schema({
   title: {
@@ -9,43 +9,46 @@ const codeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  imagePath: {
+  image: {
+    type: String,
+  },
+  video: {
+    type: String,
+  },
+  githubUrl: {
     type: String,
     required: true,
   },
-  sourceCodePath: {
+  deployedUrl: {
+    type: String,
+  },
+  author: {
     type: String,
     required: true,
   },
-  githublink: {
+  author_ID:{
     type: String,
     required: true,
   },
-  html: {
+  sourcePath:{
     type: String,
     required: true,
   },
-  css: {
-    type: String,
-    required: true,
+  code: {
+    html: {
+      type: String,
+      required: true,
+    },
+    css: {
+      type: String,
+      required: true,
+    },
+    js: {
+      type: String,
+      required: true,
+    },
   },
-  js: {
-    type: String,
-    required: true,
-  },
-  useremail: {
-    type: String,
-    required: true,
-  }, 
-  previewLink: {
-    type: String,
-    required:  true,
-  },
-  videoPath: {
-    type: String,
-  }
 });
 
-const AdminCode = mongoose.model('admincodes', codeSchema);
-
+const AdminCode = mongoose.model("AdminCode", codeSchema);
 module.exports = AdminCode;
