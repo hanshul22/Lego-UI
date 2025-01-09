@@ -51,7 +51,7 @@ router.post(
     uploadUserCode
 );
 
-router.get("/codes", checkUserAuth, getUserCodes);
+router.get("/codes", getUserCodes);
 
 router.post(
     "/edit/:id",
