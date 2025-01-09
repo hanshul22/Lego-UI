@@ -1,26 +1,68 @@
-const express = require('express');
-const { uploadUserCode, getUserCodes, editUserCode, deleteUserCode } = require('../controllers/usercode');
-const multer = require('multer');
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const { cloudinary } = require('../config/cloudinary');
+const express = require("express");
+const { uploadUserCode, getUserCodes, editUserCode, deleteUserCode} = require("../controllers/usercode");
+const checkUserAuth = require("../middlewares/auth.middleware")
+const multer = require("multer");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const { cloudinary } = require("../config/cloudinary");
 
 const router = express.Router();
 
-// Configure Cloudinary storage for Multer
+// Multer Storage Configuration
 const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: 'user_codes',
-  },
+    cloudinary: cloudinary,
+    params: async (req, file) => {
+        if (file.mimetype.startsWith("video/")) {
+            return {
+                folder: "user_codes/videos",
+                resource_type: "video", // Explicitly set as video for proper Cloudinary handling
+            };
+        }
+        if (file.mimetype.startsWith("image/")) {
+            return {
+                folder: "user_codes/images",
+                resource_type: "image",
+            };
+        }
+        throw new Error("Unsupported file type"); // Reject unsupported file types
+    },
 });
 
-// Initialize Multer with Cloudinary storage
-const upload = multer({ storage: storage });
+// Multer Upload Middleware
+const upload = multer({
+    storage: storage,
+    fileFilter: (req, file, cb) => {
+        const allowedMimeTypes = ["image/jpeg", "image/png", "video/mp4", "video/mkv"];
+        if (allowedMimeTypes.includes(file.mimetype)) {
+            cb(null, true);
+        } else {
+            cb(new Error("Unsupported file type"));
+        }
+    },
+});
 
-// Routes
-router.post('/upload', upload.single('image'), uploadUserCode);   // Upload user code
-router.get('/codes', getUserCodes);                              // Get all user codes
-router.put('/edit/:id', upload.single('image'), editUserCode);  // Edit user code by ID
-router.delete('/delete/:id', deleteUserCode);                  // Delete user code by ID 
+// Route Definitions
+router.post(
+    "/upload",
+    checkUserAuth,
+    upload.fields([
+        { name: "image", maxCount: 1 },
+        { name: "video", maxCount: 1 }
+    ]), 
+    uploadUserCode
+);
+
+router.get("/codes", checkUserAuth, getUserCodes);
+
+router.post(
+    "/edit/:id",
+    checkUserAuth,
+    upload.fields([
+        { name: "image", maxCount: 1 },
+        { name: "video", maxCount: 1 }
+    ]),
+    editUserCode
+);
+
+router.delete("/delete/:id", checkUserAuth, deleteUserCode);
 
 module.exports = router;
